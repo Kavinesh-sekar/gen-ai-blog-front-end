@@ -23,6 +23,7 @@ function BlogView() {
     console.log('iddd',blog_id);
 
     useEffect(()=>{
+      window.scrollTo(0, 0);
          async function fetchData() {
               
               const response = await fetchBlogId(blog_id);

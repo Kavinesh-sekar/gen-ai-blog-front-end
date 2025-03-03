@@ -5,7 +5,7 @@ import { Postdata } from '../assets/PostData';
 import { CreateBlog } from '../api/blogApi';
 import { useNavigate } from 'react-router-dom';
 
-function AddBlog() {
+function AddBlog({addBlog}) {
     const [topic, setTopic] = useState('');
     const [tags, setTags] = useState([]);
     const [currentTag, setCurrentTag] = useState("");
@@ -39,10 +39,10 @@ function AddBlog() {
     // Save Blog
     const saveblog = async () => {
         let newBlog = {
-            id: 12,
+            id: Date.now() + Math.floor(Math.random() * 1000),
             title: topic,
             tags: tags,
-            data: "2025-02-23",
+            data: new Date().toISOString(),
             content: Postdata,
             image: "https://www.optimalvirtualemployee.com/wp-content/uploads/2022/12/Web-Developer-skill.jpg"
         };
@@ -52,9 +52,12 @@ function AddBlog() {
 
         setAlertMessage("Blog saved successfully!"); 
 
+        addBlog(saveblog)
+
         // Redirect after 2 seconds
         setTimeout(() => {
             navigate('/');
+            window.location.reload();
         }, 2000);
     };
 

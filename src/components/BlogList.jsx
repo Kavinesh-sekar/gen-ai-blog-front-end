@@ -3,29 +3,32 @@ import {fetchBlog} from '../api/blogApi'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Container, Fade, Grid, Grid2, Grow, Paper, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function BlogList() {
+function BlogList({blogData}) {
 
   const navigate =  useNavigate();
 
-  const [blogData,setBlogData] = useState([])
+  console.log('blblbllb', );
+  
+
+  // const [blogData,setBlogData] = useState([])
 
 
-  useEffect(()=>{
-    async function fetchData() {
+  // useEffect(()=>{
+  //   async function fetchData() {
       
-      const response = await fetchBlog();
+  //     const response = await fetchBlog();
 
-      setBlogData(response.data);
-
-
+  //     setBlogData(response.data);
 
 
-    }
-    fetchData();
-  },[])
 
-  console.log('gg',blogData[3]?.image);
-  console.log('gg',blogData);
+
+  //   }
+  //   fetchData();
+  // },[])
+
+  // console.log('gg',blogData[3]?.image);
+  // console.log('gg',blogData);
 
   const handleRead = (id)=>{
     navigate(`/blog/${id}`)
@@ -41,7 +44,7 @@ function BlogList() {
       {/* <Container > */}
 
 
-    <Typography variant='h4'>
+    <Typography variant='h5' mb={4} mt={4} sx={{textAlign:'center'}}>
 
       Latest Blog
     </Typography>
