@@ -7,9 +7,11 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import ShareIcon from "@mui/icons-material/Share"
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder"
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
-function BlogView() {
+
+function BlogView({onDelete}) {
 
     let navigate =  useNavigate();
 
@@ -27,8 +29,11 @@ function BlogView() {
          async function fetchData() {
               
               const response = await fetchBlogId(blog_id);
+
+              console.log('rrrrrrrrr',response);
+              
         
-              setBlogDetails(response.data[0]);
+              setBlogDetails(response.data);
         
         
         
@@ -44,10 +49,12 @@ function BlogView() {
         navigate('/')
     }
     const handleDelete = async(id)=>{
-      console.log('idd',id);
+      console.log('idd delelete',id);
       
 
-      let data = await deleteBlogId(id) 
+      let data = await deleteBlogId(id) ;
+
+      onDelete(id);
 
       navigate('/');
 
@@ -109,6 +116,10 @@ function BlogView() {
             <IconButton size="small" sx={{ color: "text.secondary" }}>
               <DeleteIcon  onClick={()=>handleDelete(blogDetails?.id)}/>
             </IconButton>
+
+            <IconButton size="small" sx={{ color: "text.secondary" }} onClick={() => navigate(`/edit/${blogDetails?.id}`)}>
+  <EditIcon />
+</IconButton>
           </Box>
         </Box>
 

@@ -48,7 +48,9 @@ export const CreateBlog = async(blogData) =>{
 
 export const deleteBlogId =async(blog_id)=>{
     try{
-    const data  =  await fetch(`${BackEnd_URL}/api/delete_blog/${blog_id}`);
+    const data  =  await fetch(`${BackEnd_URL}/api/delete_blog/${blog_id}`,{
+       method: 'DELETE'
+    });
 
     const response = await data.json();
 
@@ -58,3 +60,21 @@ export const deleteBlogId =async(blog_id)=>{
         console.log(`Failed to fetch the blog ${blog_id}`,err)
     }
 }
+
+
+export const updateBlogId = async (id, data) => {
+    try {
+      const response = await fetch(`${BackEnd_URL}/api/update_blogs/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      return response.json();
+    } catch (error) {
+      console.error("Error updating blog:", error);
+    }
+  };
+  

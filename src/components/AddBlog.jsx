@@ -38,11 +38,14 @@ function AddBlog({addBlog}) {
 
     // Save Blog
     const saveblog = async () => {
+
+        const date = new Date();
+    
         let newBlog = {
             id: Date.now() + Math.floor(Math.random() * 1000),
             title: topic,
             tags: tags,
-            data: new Date().toISOString(),
+            date: date.toISOString().split('T')[0],
             content: Postdata,
             image: "https://www.optimalvirtualemployee.com/wp-content/uploads/2022/12/Web-Developer-skill.jpg"
         };
